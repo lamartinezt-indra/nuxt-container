@@ -1,0 +1,23 @@
+# EditorConfig ayuda a mantener estilos de codificación consistentes entre diferentes editores e IDEs
+root = true
+
+# Configuración por defecto para todos los archivos
+[*]
+indent_style = space             # Usa espacios para la indentación
+indent_size = 2                  # Define el tamaño de la indentación
+end_of_line = lf                 # Usa LF (Unix) para los finales de línea
+charset = utf-8                  # Usa UTF-8 como codificación de archivo
+trim_trailing_whitespace = true  # Elimina espacios en blanco al final de las líneas
+insert_final_newline = true      # Inserta una nueva línea al final de los archivos
+
+# Configuración específica para archivos JavaScript
+[*.js]
+indent_size = 2                  # Tamaño de la indentación específica para archivos JavaScript
+
+# Configuración específica para JSON
+[*.json]
+indent_size = 2                  # Tamaño de la indentación específica para archivos JSON
+
+# Configuración para archivos Markdown
+[*.md]
+trim_trailing_whitespace = false # No eliminar espacios en blanco al final de las líneas en archivos Markdown
