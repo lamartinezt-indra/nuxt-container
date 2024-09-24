@@ -1,0 +1,23 @@
+name: Acción para generar imagen docker
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build stage
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    env:
+      GITHUB_TOKEN: ${{ secrets.PACKAGE_REGISTRY_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4.1.7
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+
+      - name: Build the Docker image
+        run: docker build . -f Dockerfile -t gestion-usuarios-web
