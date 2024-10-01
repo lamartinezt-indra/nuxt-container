@@ -35,4 +35,4 @@ jobs:
             ${{ runner.os }}-
 
       - name: Construir la imagen de Docker
-        run: docker build . -t gestion-usuarios-identidad:${{ steps.get-version.outputs.version }}
+        run: docker build . -f gestion-usuarios-web/Dockerfile -t gestion-usuarios-identidad:${{ steps.get-version.outputs.version }}
