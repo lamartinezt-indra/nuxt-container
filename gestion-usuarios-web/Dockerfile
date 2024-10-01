@@ -5,7 +5,7 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 
 # Copiar el resto de los archivos del proyecto
-COPY package*.json ./
+COPY gestion-usuarios-web/package*.json ./
 
 # Instalar dependencias
 RUN npm install
