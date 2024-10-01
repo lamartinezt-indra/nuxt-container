@@ -19,5 +19,18 @@ jobs:
         with:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
 
-      - name: Build the Docker image
-        run: docker build . -f Dockerfile -t gestion-usuarios-web
+      - name: Obtener versión de package.json
+        id: get-version
+        run: echo "::set-output name=version::$(jq -r '.version' gestion-usuarios-web/package.json)"
+
+      - name: Caché de dependencias de npm
+        uses: actions/cache@v4.0.2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+            ${{ runner.os }}-
+
+      - name: Construir la imagen de Docker
+        run: docker build . -f gestion-usuarios-web/Dockerfile -t gestion-usuarios-identidad:${{ steps.get-version.outputs.version }}
