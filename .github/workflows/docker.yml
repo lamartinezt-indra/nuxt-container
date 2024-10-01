@@ -21,7 +21,9 @@ jobs:
 
       - name: Obtener versión de package.json
         id: get-version
-        run: echo "::set-output name=version::$(jq -r '.version' gestion-usuarios-web/package.json)"
+        run: |
+          version=$(jq -r '.version' gestion-usuarios-web/package.json)
+          echo "version=$version" >> $GITHUB_OUTPUT
 
       - name: Caché de dependencias de npm
         uses: actions/cache@v4.0.2
