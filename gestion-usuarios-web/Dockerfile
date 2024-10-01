@@ -5,11 +5,14 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 
 # Copiar el resto de los archivos del proyecto
-COPY . .
+COPY package*.json ./
 
 # Instalar dependencias
 RUN npm install
 RUN npm prune --omit=dev
+
+# Copiar el resto de los archivos del proyecto
+COPY . .
 
 # Construir la aplicación Nuxt
 RUN npm run build
